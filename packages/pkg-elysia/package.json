@@ -1,0 +1,15 @@
+{
+  "name": "pkg-elysia",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+		"dev": "bun --watch src/index.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "elysia": "^1.2.12"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

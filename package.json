@@ -1,0 +1,11 @@
+{
+  "name": "agent",
+  "version": "0.0.1",
+  "workspaces": ["packages/*"],
+  "scripts": {
+		"elysia-http:dev": "bun run --filter 'pkg-elysia' dev"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.2.2"
+  }
+}
