@@ -1,6 +1,6 @@
 {
   "name": "pkg-elysia",
-  "module": "index.ts",
+  "module": "src/index.ts",
   "type": "module",
   "scripts": {
 		"dev": "bun --watch src/index.ts"

@@ -1,0 +1,16 @@
+{
+  "name": "pkg-langchain",
+  "module": "src/index.ts",
+  "type": "module",
+	"scripts": {
+		"dev": "bun src/index.ts"
+	},
+  "devDependencies": {
+		"@langchain/core": "workspace:*",
+    "@langchain/google-genai": "workspace:*",
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
