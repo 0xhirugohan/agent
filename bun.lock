@@ -3,10 +3,6 @@
   "workspaces": {
     "": {
       "name": "agent",
-      "dependencies": {
-        "@langchain/core": "^0.3.40",
-        "@langchain/google-genai": "^0.1.8",
-      },
       "devDependencies": {
         "@types/bun": "^1.2.2",
       },
@@ -24,7 +20,9 @@
     "packages/pkg-langchain": {
       "name": "pkg-langchain",
       "devDependencies": {
-        "@types/bun": "latest",
+        "@langchain/core": "^0.3.40",
+        "@langchain/google-genai": "^0.1.8",
+        "@types/bun": "^.1.2.2",
       },
       "peerDependencies": {
         "typescript": "^5.0.0",

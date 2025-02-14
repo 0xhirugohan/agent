@@ -6,9 +6,9 @@
 		"dev": "bun src/index.ts"
 	},
   "devDependencies": {
-		"@langchain/core": "workspace:*",
-    "@langchain/google-genai": "workspace:*",
-    "@types/bun": "latest"
+		"@langchain/core": "^0.3.40",
+    "@langchain/google-genai": "^0.1.8",
+    "@types/bun": "^.1.2.2"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
