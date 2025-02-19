@@ -12,10 +12,20 @@ const GraphAnnotation = Annotation.Root({
 });
 
 const llm = new ChatGoogleGenerativeAI({
-  modelName: "gemini-1.5-pro",
+  modelName: "gemini-2.0-flash",
   temperature: 0,
   maxRetries: 2,
 	apiKey: process.env.GOOGLE_API_KEY,
+});
+
+const trimmer = await trimMessages({
+	maxTokens: 45,
+	strategy: "last",
+	tokenCounter: (msgs) => msgs.length,
+	// tokenCounter: llm,
+	includeSystem: true,
+	allowPartial: false,
+	startOn: "human",
 });
 
 const promptTemplate = ChatPromptTemplate.fromMessages([
@@ -73,11 +83,16 @@ const callModel3 = async (state: typeof GraphAnnotation.State) => {
 };
 
 const callModel4 = async (state: typeof GraphAnnotation.State) => {
+	console.log({ stateMessages: state.messages });
 	const trimmedMessage = await trimmer.invoke(state.messages);
+	console.log("======= START OF TRIMMED MESSAGE ======");
+	console.log({ trimmedMessage  });
+	console.log("======= END OF TRIMMED MESSAGE ======");
 	const prompt = await promptTemplate2.invoke({
 		messages: trimmedMessage,
 		language: state.language,
 	});
+	console.log({ prompt });
 	const response = await llm.invoke(prompt);
 	return { messages: [response] };
 };
@@ -96,17 +111,11 @@ const testMessages = [
   new AIMessage("yes!"),
 ];
 
-const trimmedMessage = await trimMessages(testMessages, {
-	maxToken: 100,
-	// strategy: "last",
-	// tokenCounter: (msgs) => msgs.length,
-	tokenCounter: () => 1,
-	// includeSystem: true,
-	// allowPartial: false,
-	// startOn: [HumanMessage],
-	// endOn: [AIMessage],
-});
+// const trimmedMessage = await trimmer.invoke(testMessages);
+// console.log({ trimmedMessage });
+// console.dir(trimmedMessage, { depth: null });
 
+/*
 console.log(
   trimmedMessage
     .map((x) =>
@@ -121,13 +130,7 @@ console.log(
     )
     .join("\n\n")
 );
-
-// const chain = trimmer.pipe(llm);
-// const trimmedMessage = await trimmer.invoke(messages);
-console.log({ trimmedMessage });
-console.dir(trimmedMessage, { depth: null });
-
-/*
+*/
 
 const config = { configurable: { thread_id: uuidv4() } };
 
@@ -216,6 +219,12 @@ const input8 = {
 	language: "English",
 };
 
+console.log("============================");
 const output9 = await app4.invoke(input8, config5);
-console.log(output9.messages[output9.messages.length - 1]);
+/*
+const output9 = await app4.invoke({
+	messages: [...messages, new HumanMessage("hello")],
+	language: "English",
+}, config5);
 */
+console.log(output9.messages[output9.messages.length - 1]);
