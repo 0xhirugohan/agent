@@ -17,6 +17,18 @@
         "typescript": "^5.0.0",
       },
     },
+    "packages/pkg-gemini": {
+      "name": "pkg-gemini",
+      "dependencies": {
+        "@google/generative-ai": "^0.21.0",
+      },
+      "devDependencies": {
+        "@types/bun": "latest",
+      },
+      "peerDependencies": {
+        "typescript": "^5.0.0",
+      },
+    },
     "packages/pkg-langchain": {
       "name": "pkg-langchain",
       "dependencies": {
@@ -108,6 +120,8 @@
     "p-timeout": ["p-timeout@3.2.0", "", { "dependencies": { "p-finally": "^1.0.0" } }, "sha512-rhIwUycgwwKcP9yTOOFK/AKsAopjjCakVqLHePO3CC6Mir1Z99xT+R63jZxAT5lFZLa2inS5h+ZS2GvR99/FBg=="],
 
     "pkg-elysia": ["pkg-elysia@workspace:packages/pkg-elysia"],
+
+    "pkg-gemini": ["pkg-gemini@workspace:packages/pkg-gemini"],
 
     "pkg-langchain": ["pkg-langchain@workspace:packages/pkg-langchain"],
 
